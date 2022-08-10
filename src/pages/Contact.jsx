@@ -17,6 +17,7 @@ import {
   InputLeftElement,
   Textarea,
   Image,
+  useToast,
 } from "@chakra-ui/react";
 import { MdPhone, MdEmail, MdLocationOn, MdOutlineEmail } from "react-icons/md";
 import { BsPerson } from "react-icons/bs";
@@ -26,12 +27,13 @@ import { DiGithubAlt } from "react-icons/di";
 import React, { useRef } from "react";
 import emailjs from "@emailjs/browser";
 import mahmoud from "../assets/mahmoud.png";
+
 const Contact = () => {
+  const toast = useToast();
   const form = useRef();
 
   const sendEmail = (e) => {
     e.preventDefault();
-
     emailjs
       .sendForm(
         "service_9zxymhc",
@@ -41,10 +43,26 @@ const Contact = () => {
       )
       .then(
         (result) => {
-          console.log(result.text);
+          console.log(result.status);
+          if (result.status === 200) {
+            toast({
+              title: "Thanks for contacting me .",
+              description: "i will get back to you as soon as possible",
+              status: "success",
+              duration: 9000,
+              isClosable: true,
+            });
+          }
         },
         (error) => {
           console.log(error.text);
+          toast({
+            title: "There is an Error .",
+            description: "Please try again later",
+            status: "error",
+            duration: 9000,
+            isClosable: true,
+          });
         }
       );
   };

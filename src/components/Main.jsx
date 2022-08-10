@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Box, Image, Grid, Text, Link } from "@chakra-ui/react";
 import Typewriter from "typewriter-effect";
-import resume from "../assets/MahmoudIbrahim.pdf";
+import resume from "../assets/MahmoudAhmed.pdf";
 import CV from "../assets/cv1.png";
 import Lottie from "react-lottie";
 import * as animationData from "../assets/mainshowcase.json";
